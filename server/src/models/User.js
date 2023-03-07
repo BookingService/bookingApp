@@ -18,12 +18,14 @@ const UserSchema = mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: "Flat",
+        default: [],
       },
     ],
     bookings: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Booking",
+        default: [],
       },
     ],
     email: {
@@ -34,6 +36,11 @@ const UserSchema = mongoose.Schema(
     phone: {
       type: String,
       unique: true,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
     },
   },
   {
