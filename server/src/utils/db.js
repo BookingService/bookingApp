@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -8,7 +8,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 const db = mongoose.connection;
 

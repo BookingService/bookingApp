@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const BookingSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Types.ObjectId,
       required: true,
-      ref: "User",
+      ref: 'User',
     },
     flat: {
       type: mongoose.Types.ObjectId,
       required: true,
-      ref: "Flat",
+      ref: 'Flat',
     },
     checkIn: {
       type: Date,
@@ -28,10 +28,15 @@ const BookingSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ['Pending', 'Confirmed', 'Cancelled'],
+      default: 'Pending',
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export const Booking = mongoose.model("Booking", BookingSchema);
+export const Booking = mongoose.model('Booking', BookingSchema);

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const UserSchema = mongoose.Schema(
   {
@@ -17,14 +17,14 @@ const UserSchema = mongoose.Schema(
     favorites: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Flat",
+        ref: 'Flat',
         default: [],
       },
     ],
     bookings: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "Booking",
+        ref: 'Booking',
         default: [],
       },
     ],
@@ -45,7 +45,7 @@ const UserSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export const User = mongoose.model("User", UserSchema);
+export const User = mongoose.model('User', UserSchema);
