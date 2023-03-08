@@ -1,7 +1,7 @@
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { User } from "../models/User.js";
-import { messages } from "../utils/text.js";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { User } from '../models/User.js';
+import { messages } from '../utils/text.js';
 export class AuthController {
   async registrateUser(req, res) {
     try {
@@ -25,11 +25,15 @@ export class AuthController {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
       if (!user) {
-        return res.status(401).json({ message: messages[401] });
+        return res
+          .status(401)
+          .json({ message: messages.wrong_credentials_error });
       }
       const isPasswordCorrect = await bcrypt.compare(password, user.password);
       if (!isPasswordCorrect) {
-        return res.status(401).json({ message: messages[401] });
+        return res
+          .status(401)
+          .json({ message: messages.wrong_credentials_error });
       }
       const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
       return res.status(200).json({ user, token });

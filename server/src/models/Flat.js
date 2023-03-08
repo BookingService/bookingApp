@@ -6,6 +6,10 @@ const FlatSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    pricePerNight: {
+      type: Number,
+      required: true,
+    },
     reviews: [
       {
         type: mongoose.Types.ObjectId,
