@@ -69,6 +69,7 @@ export class BookingController {
       if (!pricePerNight) {
         return res.status(404).json({ message: messages.flat_not_found });
       }
+
       const totalNights =
         Math.floor(new Date(checkOut) - new Date(checkIn)) /
         (1000 * 60 * 60 * 24);
@@ -82,6 +83,13 @@ export class BookingController {
         totalGuests,
       });
       await newBooking.save();
+      await User.findByIdAndUpdate(
+        user,
+        {
+          $push: { bookings: newBooking._id },
+        },
+        { new: true }
+      );
       const populateBooking = await Booking.findById(newBooking._id)
         .populate("user")
         .populate("flat");
@@ -118,6 +126,11 @@ export class BookingController {
       const booking = await Booking.findByIdAndUpdate(id, updateFields, {
         new: true,
       }).populate("user flat");
+      if (!booking) {
+        return res
+          .status(404)
+          .json({ message: messages.booking_not_found_error });
+      }
       res.json(booking);
     } catch (e) {
       res.status(500).json({ message: messages[500] });
