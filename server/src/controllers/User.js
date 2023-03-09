@@ -1,21 +1,23 @@
-import { User } from '../models/User.js';
-import { messages } from '../utils/text.js';
-import { Booking } from '../models/Booking.js';
-import { Flat } from '../models/Flat.js';
+import { User } from "../models/User.js";
+import { ERROR_MESSAGES } from "../utils/messages.js";
+import { Booking } from "../models/Booking.js";
+import { Flat } from "../models/Flat.js";
 export class UserController {
   async getUser(req, res) {
     try {
       const { id } = req.params;
       const user = await User.findById(id)
-        .populate('bookings')
-        .populate('favorites');
+        .populate("bookings")
+        .populate("favorites");
       if (!user) {
-        return res.status(404).json({ message: messages.user_not_found_error });
+        return res
+          .status(404)
+          .json({ message: ERROR_MESSAGES.user_not_found_error });
       }
 
       res.json(user);
     } catch (e) {
-      res.status(500).json({ message: e.message });
+      res.status(500).json({ message: ERROR_MESSAGES.server_error });
     }
   }
   async deleteUser(req, res) {
@@ -24,7 +26,7 @@ export class UserController {
       await User.findByIdAndDelete(id);
       return res.status(204).json();
     } catch (e) {
-      res.status(500).json({ message: messages[500] });
+      res.status(500).json({ message: ERROR_MESSAGES.server_error });
     }
   }
   async changeUser(req, res) {
@@ -39,14 +41,16 @@ export class UserController {
           email,
           phone,
         },
-        { new: true },
+        { new: true }
       );
       if (!user) {
-        return res.status(404).json({ message: messages.user_not_found_error });
+        return res
+          .status(404)
+          .json({ message: ERROR_MESSAGES.user_not_found_error });
       }
       return res.json(user);
     } catch (e) {
-      res.status(500).json({ message: messages[500] });
+      res.status(500).json({ message: ERROR_MESSAGES.server_error });
     }
   }
 }
