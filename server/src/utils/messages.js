@@ -15,4 +15,9 @@ export const ERROR_MESSAGES = {
     "You cant book an flat earlier than tomorrow",
   flat_not_found: "Flat is not found in the base",
   validation_error: "Not all of required fields were presented",
+  flats_not_found: "Flats are not found in the base",
+  no_address_error: "No address provided",
+  not_found_address: "Address wasnt found",
+  invalid_upload_image: "Error while upload image",
+  invalid_request:"Invalid request"
 };
