@@ -6,6 +6,8 @@ const userController = new UserController();
 
 router.get("/:id", userController.getUser);
 
+router.post("/favorites", userController.addToFavorites);
+
 router.put("/:id", userController.changeUser);
 
 router.delete("/:id", userController.deleteUser);
