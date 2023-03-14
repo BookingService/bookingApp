@@ -6,6 +6,14 @@ const FlatSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    title: {
+      type: String,
+      required: true,
+    },
+      pricePerNight:{
+        type:Number,
+          required:true
+      },
     reviews: [
       {
         type: mongoose.Types.ObjectId,
@@ -22,10 +30,9 @@ const FlatSchema = mongoose.Schema(
         type: String,
       },
     ],
-    images: [
+    imagesUrls: [
       {
         type: String,
-        required: true,
       },
     ],
     description: {
@@ -47,6 +54,17 @@ const FlatSchema = mongoose.Schema(
       },
       isParkingAvailable: {
         type: Boolean,
+      },
+    },
+    location: {
+      type: {
+        required: true,
+        type: String,
+        enum: ["Point"],
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
       },
     },
   },

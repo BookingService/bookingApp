@@ -6,3 +6,5 @@ node_modules/
 
 # Ignore the logs directory and all its contents
 logs
+
+public/uploads
