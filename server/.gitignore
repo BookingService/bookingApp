@@ -7,4 +7,8 @@ node_modules/
 # Ignore the logs directory and all its contents
 logs
 
+<<<<<<< HEAD
 public/
+=======
+public/uploads
+>>>>>>> b512b81a1e292c7354e24445ef84f80b68d5b24e
