@@ -53,4 +53,31 @@ export class UserController {
       res.status(500).json({ message: ERROR_MESSAGES.server_error });
     }
   }
+  async addToFavorites(req, res) {
+    try {
+      const { userId, flatId } = req.body;
+      const user = await User.findById(userId).populate("favorites");
+      if (!user) {
+        return res
+          .status(404)
+          .json({ message: ERROR_MESSAGES.user_not_found_error });
+      }
+      const favoriteIndex = user.favorites.findIndex(
+        (favorite) => favorite.id === flatId
+      );
+      if (favoriteIndex !== -1) {
+        user.favorites.splice(favoriteIndex, 1);
+      } else {
+        user.favorites.push(flatId);
+      }
+      await user.save();
+      const populatedUser = await User.findById(userId).populate(
+        "favorites",
+        "-__v -createdAt -updatedAt"
+      );
+      res.json(populatedUser.favorites);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
