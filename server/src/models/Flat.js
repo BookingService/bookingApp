@@ -22,7 +22,7 @@ const FlatSchema = mongoose.Schema(
         type: String,
       },
     ],
-    images: [
+    imagesUrls: [
       {
         type: String,
         required: true,
