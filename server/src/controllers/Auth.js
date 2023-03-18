@@ -17,7 +17,7 @@ export class AuthController {
       });
       res.status(201).json(createUser);
     } catch (e) {
-      res.status(500).json({ message: ERROR_MESSAGES.server_error });
+      res.status(500).json({ message: e.message });
     }
   }
   async login(req, res) {
