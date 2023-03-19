@@ -1,9 +1,10 @@
 import nodeGeocoder from "node-geocoder";
 import { ERROR_MESSAGES } from "../utils/messages.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const options = {
   provider: "opencage",
-  apiKey: process.env.API_KEY,
+  apiKey: "64f36bd033f446818abecd2c1e0f9357",
 };
 const geocoder = nodeGeocoder(options);
 export async function getCoordinatesForAddress(address) {

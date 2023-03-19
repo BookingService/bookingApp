@@ -15,4 +15,6 @@ export const ERROR_MESSAGES = {
     "You cant book an flat earlier than tomorrow",
   flat_not_found: "Flat is not found in the base",
   validation_error: "Not all of required fields were presented",
+  bad_request_error: "Not all fields were provided",
+  bad_request_for_review: "An flat keeper cant leave a review for own flat",
 };

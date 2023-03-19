@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const ReviewSchema = mongoose.Schema(
   {
-    user: {
+    userId: {
       type: mongoose.Types.ObjectId,
       required: true,
       ref: "User",
@@ -13,6 +13,11 @@ const ReviewSchema = mongoose.Schema(
     },
     description: {
       type: String,
+    },
+    flatId: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+      ref: "Flat",
     },
   },
   {
