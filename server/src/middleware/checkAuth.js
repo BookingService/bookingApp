@@ -1,8 +1,8 @@
-import { messages } from "../utils/text.js";
+import { ERROR_MESSAGES } from "../utils/messages.js";
 import jwt from "jsonwebtoken";
 export const checkAuth = (req, res, next) => {
   if (!req.headers.authorization) {
-    return res.status(403).json({ message: messages[403] });
+    return res.status(403).json({ message: ERROR_MESSAGES.no_token_error });
   }
   const token = req.headers.authorization.slice(7);
   try {
@@ -10,6 +10,6 @@ export const checkAuth = (req, res, next) => {
     req.user = decoded;
     next();
   } catch {
-    res.status(403).json({ message: messages[403] });
+    res.status(403).json({ message: ERROR_MESSAGES.no_token_error });
   }
 };

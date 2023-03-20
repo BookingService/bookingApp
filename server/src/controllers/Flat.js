@@ -1,4 +1,3 @@
-import geolib from "geolib";
 import { Flat } from "../models/Flat.js";
 import { ERROR_MESSAGES } from "../utils/messages.js";
 import { getCoordinatesForAddress } from "../middleware/getCoordinates.js";
