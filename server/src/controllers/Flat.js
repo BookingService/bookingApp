@@ -73,7 +73,7 @@ export class FlatController {
   async getFlatById(req, res) {
     try {
       const { id } = req.params;
-      const flat = await Flat.findById(id);
+      const flat = await Flat.findById(id).populate("reviews");
       if (!flat) {
         return res.status(404).json({ message: ERROR_MESSAGES.flat_not_found });
       }
