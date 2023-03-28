@@ -1,9 +1,10 @@
-import "./App.css";
+import LoginPage from "./pages/LoginPage";
 import "./index.css";
+
 function App() {
   return (
-    <div className="bg-blue-500 h-screen">
-      <h1 className="text-black text-1xl">Hello Tailwind!</h1>
+    <div className="p-4 my-0 mx-auto w-11/12">
+      <LoginPage />
     </div>
   );
 }

@@ -2,9 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-
+import { QueryClient, QueryClientProvider } from "react-query";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+const client = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <QueryClientProvider client={client}>
+    <MantineProvider withCSSVariables withGlobalStyles withNormalizeCSS>
+      <Notifications position="top-right" />
+      <App />
+    </MantineProvider>
+  </QueryClientProvider>
 );
