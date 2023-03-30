@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Paper, TextInput, Title, PasswordInput } from "@mantine/core";
 import { useAuth } from "../../hooks/useAuth";
+import { text } from "../../../../shared/constant";
 
 export type TLogin = {
   email: string;
@@ -26,7 +27,7 @@ export const LoginForm: FC = () => {
         withBorder={false}
       >
         <Title className="text-center" fw={"normal"}>
-          Login
+          {text.login}
         </Title>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
@@ -34,14 +35,14 @@ export const LoginForm: FC = () => {
         >
           <div className="w-7/12 flex flex-col">
             <TextInput
-              label="Email"
+              label={text.email}
               required
               type="email"
               {...register("email", {
-                required: "Email is required",
+                required: `${text.email_empty_error}`,
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Email is invalid",
+                  message: `${text.email_validation_error}`,
                 },
               })}
               error={errors.email?.message}
@@ -51,16 +52,16 @@ export const LoginForm: FC = () => {
 
             <PasswordInput
               autoComplete="new-password"
-              label="Password"
+              label={text.password}
               required
               withAsterisk
-              description="Password should include at least 5 symbols"
+              description={text.password_description}
               error={errors.password?.message}
               {...register("password", {
-                required: "Password is required",
+                required: `${text.password_validation_error}`,
                 minLength: {
                   value: 5,
-                  message: "Minimal lenght of password is 5",
+                  message: `${text.password_value_error}`,
                 },
               })}
               mb="sm"
@@ -77,7 +78,7 @@ export const LoginForm: FC = () => {
               className="self-end"
               loading={isLoading}
             >
-              Login
+              {text.login}
             </Button>
           </div>
         </form>
