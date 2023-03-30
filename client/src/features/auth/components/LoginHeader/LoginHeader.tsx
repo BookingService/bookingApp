@@ -1,6 +1,7 @@
 import { colors } from "../../../../shared/colors";
 import { Text } from "@mantine/core";
 import React, { Dispatch, FC, SetStateAction } from "react";
+import { text } from "../../../../shared/constant";
 
 interface IHeaderProps {
   isRegistration: boolean;
@@ -24,9 +25,7 @@ export const LoginHeader: FC<IHeaderProps> = ({
         className="cursor-pointer"
         color="gray"
       >
-        {isRegistration
-          ? "Already have an account? Sign-in"
-          : "Dont have an account? Register now"}
+        {isRegistration ? text.signin_message : text.registration_message}
       </Text>
     </header>
   );

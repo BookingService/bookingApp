@@ -3,7 +3,7 @@ import { ChangeEvent, FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import MaskedInput from "react-text-mask";
 import { DateInput } from "@mantine/dates";
-import { phoneMask } from "../../../../shared/constant";
+import { phoneMask, text } from "../../../../shared/constant";
 import { useRegistration } from "../../hooks/useRegistration";
 
 export type TRegistration = {
@@ -35,12 +35,12 @@ export const RegistrationForm: FC = () => {
   return (
     <>
       <Paper
-        className="p-4  w-9/12 flex flex-col my-0 mx-auto justify-center"
+        className="p-4 w-9/12 flex flex-col my-0 mx-auto justify-center"
         shadow="sm"
         withBorder={false}
       >
         <Title className="text-center" fw={"normal"}>
-          Registration
+          {text.registration}
         </Title>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
@@ -52,11 +52,12 @@ export const RegistrationForm: FC = () => {
                 label="Email"
                 required
                 type="email"
+                placeholder={text.email_placeholder}
                 {...register("email", {
-                  required: "Email is required",
+                  required: `${text.email_empty_error}`,
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Email is invalid",
+                    message: `${text.email_validation_error}`,
                   },
                 })}
                 error={errors.email?.message}
@@ -77,8 +78,8 @@ export const RegistrationForm: FC = () => {
                     }}
                     render={(ref: any, props) => (
                       <TextInput
-                        label="Phone"
-                        placeholder="+7 (___) ___-__-__"
+                        label={text.phone}
+                        placeholder={text.phone_placeholder}
                         ref={ref}
                         {...props}
                         className="ml-1 w-1/2"
@@ -90,49 +91,53 @@ export const RegistrationForm: FC = () => {
             </div>
             <div className="flex">
               <TextInput
-                label="First Name"
+                label={text.firstname}
                 required
                 type="text"
                 {...register("firstName", {
-                  required: "First name is required",
+                  required: `${text.firstname_empty_error}`,
                 })}
                 error={errors.firstName?.message}
                 withAsterisk
                 mb={"sm"}
                 className="w-1/2"
+                placeholder={text.firstname_placeholder}
               />
               <TextInput
-                label="Last Name"
+                label={text.lastname}
                 required
                 type="text"
                 {...register("lastName", {
-                  required: "Last name is required",
+                  required: `${text.lastname_empty_error}`,
                 })}
                 error={errors.lastName?.message}
                 withAsterisk
+                placeholder={text.lastname_placeholder}
                 mb={"sm"}
                 className="w-1/2 ml-1"
               />
             </div>
             <DateInput
-              label="Pick your date of birth"
+              label={text.birth_date}
               error={errors.age?.message}
               withAsterisk
               onChange={(value: Date) => setValue("age", value)}
               value={age ?? null}
+              placeholder={text.birthdate_placeholder}
             />
             <PasswordInput
               autoComplete="new-password"
-              label="Password"
+              label={text.password}
               required
               withAsterisk
-              description="Password should include at least 5 symbols"
+              placeholder={text.password_placeholder}
+              description={text.password_description}
               error={errors.password?.message}
               {...register("password", {
-                required: "Password is required",
+                required: `${text.password_validation_error}`,
                 minLength: {
                   value: 5,
-                  message: "Minimal lenght of password is 5",
+                  message: `${text.password_value_error}`,
                 },
               })}
               mb="sm"
@@ -148,7 +153,7 @@ export const RegistrationForm: FC = () => {
               type="submit"
               className=" self-end"
             >
-              Registration
+              {text.registration}
             </Button>
           </div>
         </form>
