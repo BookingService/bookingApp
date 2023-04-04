@@ -15,7 +15,11 @@ export class AuthController {
         age,
         phone,
       });
-      res.status(201).json(createUser);
+      const token = jwt.sign(
+        { userId: createUser._id },
+        process.env.SECRET_KEY
+      );
+      res.status(201).json({ createUser, token });
     } catch (e) {
       res.status(500).json({ message: e.message });
     }
