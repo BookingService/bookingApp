@@ -19,6 +19,7 @@ export const phoneMask = [
   /\d/,
 ];
 
+export const API_URL_FOR_UPLOADS = `http://localhost:3001/public/uploads`;
 export const notificationMessages = {
   error: "Something went wrong! Try again later.",
   success_operation: "Your action was successfull!",
@@ -49,4 +50,11 @@ export const text = {
   signin_message: "Already have an account? Sign-in",
   registration_message: "Dont have an account? Register now",
   birth_date: "Birth date",
+  authenication: "Authenication",
+  registrate: "Registrate",
+  error_while_fetching_flats:
+    "Sorry, there was an error while getting flats. Try again later",
+  guests: "Guests",
+  duration: "Any week",
+  place: "Any place",
 };

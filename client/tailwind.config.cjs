@@ -6,7 +6,11 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#F53850",
+      },
+    },
   },
   plugins: [],
 };
