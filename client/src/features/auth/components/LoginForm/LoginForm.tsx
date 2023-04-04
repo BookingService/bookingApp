@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Paper, TextInput, Title, PasswordInput } from "@mantine/core";
 import { useAuth } from "../../hooks/useAuth";
@@ -8,8 +8,11 @@ export type TLogin = {
   email: string;
   password: string;
 };
+interface ILoginProps {
+  setIsRegistration: Dispatch<SetStateAction<boolean>>;
+}
 
-export const LoginForm: FC = () => {
+export const LoginForm: FC<ILoginProps> = ({ setIsRegistration }) => {
   const {
     formState: { errors },
     handleSubmit,
@@ -19,6 +22,9 @@ export const LoginForm: FC = () => {
   const handleFormSubmit = (values: TLogin) => {
     login(values);
   };
+  const handleSetRegistrationPage = () => {
+    setIsRegistration((prev) => !prev);
+  };
   return (
     <>
       <Paper
@@ -26,6 +32,14 @@ export const LoginForm: FC = () => {
         shadow="sm"
         withBorder={false}
       >
+        <span
+          className={
+            "justify-end flex cursor-pointer underline shadow-neutral-500"
+          }
+          onClick={handleSetRegistrationPage}
+        >
+          {text.signin_message}
+        </span>
         <Title className="text-center" fw={"normal"}>
           {text.login}
         </Title>

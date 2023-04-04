@@ -1,5 +1,5 @@
 import { Button, Paper, PasswordInput, TextInput, Title } from "@mantine/core";
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
 import { Controller, useForm } from "react-hook-form";
 import MaskedInput from "react-text-mask";
 import { DateInput } from "@mantine/dates";
@@ -14,8 +14,11 @@ export type TRegistration = {
   age: Date;
   phone: string;
 };
+interface IPropsRegistration {
+  setIsLogin: Dispatch<SetStateAction<boolean>>;
+}
 
-export const RegistrationForm: FC = () => {
+export const RegistrationForm: FC<IPropsRegistration> = ({ setIsLogin }) => {
   const {
     formState: { errors },
     register,
@@ -32,6 +35,9 @@ export const RegistrationForm: FC = () => {
     reset();
   };
   const age = watch("age");
+  const handleSetLogin = () => {
+    setIsLogin((prev) => !prev);
+  };
   return (
     <>
       <Paper
@@ -42,6 +48,12 @@ export const RegistrationForm: FC = () => {
         <Title className="text-center" fw={"normal"}>
           {text.registration}
         </Title>
+        <span
+          className={"justify-end flex cursor-pointer underline "}
+          onClick={handleSetLogin}
+        >
+          {text.registration_message}
+        </span>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
           className="flex flex-col items-center"
