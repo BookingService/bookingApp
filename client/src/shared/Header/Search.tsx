@@ -1,6 +1,6 @@
 import React from "react";
 import { text } from "../constant";
-import { LoopIcon } from "../LoopIcon";
+import { LoopIcon } from "../Icons/LoopIcon";
 
 export const Search = () => {
   return (
