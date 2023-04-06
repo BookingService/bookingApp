@@ -7,7 +7,7 @@ export const FlatsList: FC = () => {
   if (isError) return <h1>Error while fetching flats</h1>;
   if (isLoading) return <Loader size="xl" variant="dots" />;
   return (
-    <div className="mt-6 grid grid-cols-4 justify-items-center">
+    <div className="mt-6 grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-items-center gap-0">
       {flats?.data.map((flat) => (
         <FlatCard flat={flat} key={flat._id} />
       ))}

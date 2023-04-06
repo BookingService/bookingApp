@@ -1,4 +1,3 @@
-import { LoginPage } from "./pages/LoginPage";
 import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import { routes } from "./shared/routes";
